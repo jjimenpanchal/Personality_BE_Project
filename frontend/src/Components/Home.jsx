@@ -11,7 +11,7 @@ const Home = () => {
         imgsrc={web}
         visit="/test"
         btname="Get Started"
-        msg="End destination for all about personlaity"
+        msg="End destination for all about personality"
       />
     </>
   );

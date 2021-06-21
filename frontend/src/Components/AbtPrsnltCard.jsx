@@ -17,6 +17,7 @@ function AbtPrsnltCard({ props }) {
           </span>
           <p>{props.summary}</p>
           <br></br>
+          <br></br>
           <NavLink
             className="button"
             to={{

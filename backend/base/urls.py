@@ -7,7 +7,9 @@ urlpatterns=[
     path("gettype/<str:title>/",views.gettype),
     path("twitter/",views.twitter),
     path("youtube/",views.youtube),
-    path("text_to_personality/",views.text_to_personality)
+    path("text_to_personality/",views.text_to_personality),
+    path("getType/",views.getType)
+    
     
 
 ]

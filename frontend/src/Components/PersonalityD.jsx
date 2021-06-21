@@ -34,7 +34,7 @@ function PersonalityD(props) {
   return (
     <>
       <br></br>
-      <h1>
+      <h1 className="text-center">
         {props.location.state.props.title}: {props.location.state.props.summary}
       </h1>
       <br></br>

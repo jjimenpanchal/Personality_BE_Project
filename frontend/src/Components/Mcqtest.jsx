@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import data from "../Data/Ques";
-import "./styles.css";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
+// import "./styles.css";
 function Mcqtest() {
   let temp_arr = [];
   for (var i = 0; i < data.length; i++) temp_arr.push("na");
   const [arr, setarr] = useState(temp_arr);
   const [flag, setflag] = useState(false);
-  const [scores, setscores] = useState({});
-  const [personality, setpersonality] = useState("");
+  const [msg, setmsg] = useState("");
+  const [ans, setans] = useState({});
+  // const [personality, setpersonality] = useState("");
   const onchange = (e) => {
     // console.log(e);
     const temp_arr = arr.map((element, idx) => {
@@ -22,116 +25,35 @@ function Mcqtest() {
 
   function printresult() {
     return (
-      <div id="results" className="text-center hidden">
+      <div>
         <br></br>
-        <h2 id="type">{personality}</h2>
-        <p id="type-details" className="type-description hidden">
-          <strong id="type-title"></strong>
-          <br />
-          <strong>
-            <span id="type-percentage"></span> of population
-          </strong>
-          <br />
-          <span id="type-description"></span>
-          <br />
-          <a id="type-site" href="#" target="_blank">
-            Learn more about your type here
-          </a>
-        </p>
-        <p className="pull-left">
-          <span className="badge">E</span> (
-          <span id="eScore">{scores["e"]}</span>%)
-        </p>
-        <p className="pull-right">
-          (<span id="iScore">{scores["i"]}</span>%){" "}
-          <span className="badge">I</span>
-        </p>
-        <div className="progress">
-          <div
-            id="eiChart"
-            className="progress-bar progress-bar-warning"
-            role="progressbar"
-            aria-valuenow="50"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style={{ width: "50%" }}
-          ></div>
-          <div className="center-bar"></div>
-        </div>
-        <br className="clearfix" />
-
-        <p className="pull-left">
-          <span className="badge">S</span> (
-          <span id="sScore">{scores["s"]}</span>%)
-        </p>
-        <p className="pull-right">
-          (<span id="nScore">{scores["n"]}</span>%)
-          <span className="badge">Nhoohgu</span>
-        </p>
-        <div className="progress">
-          <div
-            id="snChart"
-            className="progress-bar progress-bar-primary"
-            role="progressbar"
-            aria-valuenow="50"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style={{ width: "50%" }}
-          ></div>
-          <div className="center-bar"></div>
-        </div>
-        <br className="clearfix" />
-
-        <p className="pull-left">
-          <span className="badge">T</span> (
-          <span id="tScore">{scores["t"]}</span>%)
-        </p>
-        <p className="pull-right">
-          (<span id="fScore">{scores["f"]}</span>%){" "}
-          <span className="badge">F</span>
-        </p>
-        <div className="progress">
-          <div
-            id="tfChart"
-            className="progress-bar progress-bar-success"
-            role="progressbar"
-            aria-valuenow="50"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style={{ width: "50%" }}
-          ></div>
-          <div className="center-bar"></div>
-        </div>
-        <br className="clearfix" />
-
-        <p className="pull-left">
-          <span className="badge">J</span> (
-          <span id="jScore">{scores["j"]}</span>%)
-        </p>
-        <p className="pull-right">
-          (<span id="pScore">{scores["p"]}</span>%){" "}
-          <span className="badge">P</span>
-        </p>
-        <div className="progress">
-          <div
-            id="jpChart"
-            className="progress-bar progress-bar-danger"
-            role="progressbar"
-            aria-valuenow="50"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style={{ width: "50%" }}
-          ></div>
-          <div className="center-bar"></div>
-        </div>
-        <br className="clearfix" />
-        {console.log("called wow")}
+        <h2 className="text-center">Personality Type Is: {ans.title}</h2>
+        <br></br>
+        {ans.title ? (
+          <div className="text-center">
+            <NavLink
+              className="button"
+              to={{
+                pathname: "/knowmore",
+                state: {
+                  props: ans,
+                  // topic:
+                },
+              }}
+            >
+              Know More
+            </NavLink>
+            <br></br>
+            <br></br>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
 
-  const onclick1 = (e) => {
-    setflag(true);
+  function calculate() {
     let mp = new Map();
     mp["e"] = 0;
     mp["i"] = 0;
@@ -141,10 +63,12 @@ function Mcqtest() {
     mp["f"] = 0;
     mp["j"] = 0;
     mp["p"] = 0;
-
+    var flag2 = true;
     arr.map((element) => {
-      if (element !== "na") mp[element]++;
+      if (element === "na") flag2 = false;
+      else mp[element]++;
     });
+    if (!flag2) return "na";
 
     var personalityType = "";
     if (mp["e"] >= mp["i"]) personalityType += "E";
@@ -158,20 +82,24 @@ function Mcqtest() {
 
     if (mp["j"] >= mp["p"]) personalityType += "J";
     else personalityType += "P";
-    setpersonality(personalityType);
+    return personalityType;
+  }
 
-    mp["e"] = (mp["e"] * 100) / 10;
-    mp["i"] = (mp["i"] * 100) / 10;
-    mp["s"] = (mp["s"] * 100) / 20;
-    mp["n"] = (mp["n"] * 100) / 20;
-    mp["t"] = (mp["t"] * 100) / 20;
-    mp["f"] = (mp["f"] * 100) / 20;
-    mp["j"] = (mp["j"] * 100) / 20;
-    mp["p"] = (mp["p"] * 100) / 20;
-
-    setscores(mp);
-    console.log("clicked");
-    console.log(mp);
+  const onclick1 = (e) => {
+    var p = calculate();
+    console.log(p);
+    if (p === "na") {
+      setmsg("Please Answer All The Questions First");
+    }
+    if (p !== "na") {
+      setans({});
+      axios.post("/api/getType/", p).then((response) => {
+        console.log(response.data);
+        setans(response.data);
+        setflag(true);
+        setmsg("");
+      });
+    }
   };
 
   let temp = data.map((element) => {
@@ -209,27 +137,37 @@ function Mcqtest() {
   });
 
   return (
-    <div className="container">
-      <div className="page-header">
-        <br></br>
-        <h1>MBTI Test</h1>
-        <br></br>
-      </div>
+    <div className="mcqtest">
+      <div className="container">
+        <div className="page-header">
+          <br></br>
+          <h1>MBTI Test</h1>
+          <br></br>
+        </div>
 
-      <ol className="qsliist">{temp}</ol>
-      {flag ? (
-        <p className="hidden text-center">
-          (<i>scroll down</i>)
+        <ol className="qsliist">{temp}</ol>
+        {flag ? (
+          <p className="hidden text-center">
+            (<i>scroll down</i>)
+          </p>
+        ) : (
+          <br />
+        )}
+        <p className="text-center">
+          <button className="button" onClick={onclick1}>
+            Calculate Results
+          </button>
+          {msg ? (
+            <>
+              <br></br>
+              <span className="required">{msg}</span>
+            </>
+          ) : (
+            ""
+          )}
         </p>
-      ) : (
-        <br />
-      )}
-      <p className="text-center">
-        <button className="button" onClick={onclick1}>
-          Calculate Results
-        </button>
-      </p>
-      {flag ? printresult() : ""}
+        {ans.title ? printresult() : ""}
+      </div>
     </div>
   );
 }

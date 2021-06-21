@@ -154,3 +154,13 @@ def text_to_personality(request):
     return JsonResponse(ans, safe=False)
     # print("ans is hahah ",ans)
     # return HttpResponse(ans)
+
+
+@api_view(['POST'])
+def getType(request):
+    print("request.data ",request.data)
+    ans=list(request.data.keys())[0]
+    
+    ans=search_type_by_title(ans)
+    print("returning ------ ", ans)
+    return JsonResponse(ans, safe=False)

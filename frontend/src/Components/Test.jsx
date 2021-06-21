@@ -1,13 +1,13 @@
-import { Container } from "react-bootstrap";
+// import { Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import FeatureCard from "./FeatureCard";
 const Test = () => {
   return (
     <>
-      <div className="testcontainer">
-        <Container>
+      <div className="testcontainer cards justify-content-center align-items-center">
+        <div className="container align-items-centers">
           <FeatureCard
-            title="Mcq Test"
+            title="Personality Test"
             Goto="test/Mcqtest"
             ButtonName="Go"
             content="Lorem Ipsum has been the industry's standard dummy
@@ -30,7 +30,6 @@ const Test = () => {
 				text ever since the 1500s, when an unknown printer took a 
 				galley of type and scrambled it to make a type specimen book"
           />
-
           <FeatureCard
             title="Text To Personality"
             Goto="/test/texttopersonality"
@@ -39,16 +38,15 @@ const Test = () => {
 				text ever since the 1500s, when an unknown printer took a 
 				galley of type and scrambled it to make a type specimen book"
           />
-
-          <FeatureCard
+          {/* <FeatureCard
             title="Dummy"
             Goto="/aboutpersonalities"
             ButtonName="Go"
             content="Lorem Ipsum has been the industry's standard dummy
 				text ever since the 1500s, when an unknown printer took a 
 				galley of type and scrambled it to make a type specimen book"
-          />
-        </Container>
+          /> */}
+        </div>
       </div>
       <div className="AboutPButton">
         <NavLink className="button" to="/aboutpersonalities">
