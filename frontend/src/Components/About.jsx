@@ -5,7 +5,7 @@ import React from "react";
 import jimen from "../../src/images/jimen.jpg";
 import nikhil from "../../src/images/nikhil.jpeg";
 import rishikesh from "../../src/images/rishikesh.jpeg";
-import manav from "../../src/images/about.jpg";
+import manav from "../../src/images/manav.jpeg";
 import About_card from "./About_card";
 const About = () => {
   return (
@@ -33,7 +33,7 @@ const About = () => {
           />
           <About_card
             img={manav}
-            name="Manav Parekh"
+            name="Manav Parakh"
             pos="Co-Founder"
             about="Software Engineer At Cognizant"
             link="https://www.linkedin.com/in/manav-parikh-a048861a6/"

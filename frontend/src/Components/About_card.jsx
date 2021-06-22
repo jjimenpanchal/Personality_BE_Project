@@ -46,7 +46,7 @@ export default function About_card(props) {
             >
               {props.name}
             </Typography>
-            <h6 className="text-center ">{props.pos}</h6>
+            {/* <h6 className="text-center ">{props.pos}</h6> */}
             <Typography
               className="text-center"
               variant="body2"
