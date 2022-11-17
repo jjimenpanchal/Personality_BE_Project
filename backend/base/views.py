@@ -38,10 +38,10 @@ idx_of_types={
 
 }
 #Get your Twitter API credentials and enter them here
-consumer_key = '5PhijOfFwIpiSIoKpBZLitR9F'
-consumer_secret = 'ufgpIrGG0xgLuJX5y9H0bkE0J23UtoHlU8iy52hXVTUeltvq0w'
-access_key = '1339121366243500034-nowwL1t1q8BzkamZGtnthOvFo4mkQ3'
-access_secret = 'FEN3aA8HokKq4rqz6213NmiXtMQuJ4KE7ElIUBdAVqeD7'
+consumer_key = ''
+consumer_secret = ''
+access_key = ''
+access_secret = ''
 
 
 # Create your views here.
