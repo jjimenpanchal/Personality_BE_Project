@@ -132,7 +132,7 @@ def main1():
     # if not args.key:
     #     exit("Please specify API key using the -key parameter.")
     # key = args.key
-    key="AIzaSyAasW0ygqWkcKUjxhg9ZGaX7ZtsjaHdNe8"
+    key=""
 
     likes = 0
     # if args.likes:
